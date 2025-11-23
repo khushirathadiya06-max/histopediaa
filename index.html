@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HISTOPEDIA - Discover India's Majestic Forts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="logo" onclick="goHome()">
+            <span>🏰 HISTOPEDIA</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#live">Live Map</a></li>
+            <li><a href="#info">Fort Info</a></li>
+            <li><a href="#forts">Explore</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="brand-name">HISTOPEDIA</div>
+        <h1>Discover India's Magnificent Forts</h1>
+        <p>AI-Powered insights into centuries of history and architecture</p>
+        
+        <div class="search-container">
+            <input type="text" class="search-box" id="searchInput" placeholder="Search for any fort in India...">
+            <button class="search-btn" onclick="searchFort()">Search</button>
+            <div class="suggestions" id="suggestions"></div>
+        </div>
+
+        <div class="quick-access" id="quickAccess"></div>
+
+        <div class="cta-buttons">
+            <button class="btn btn-primary" onclick="scrollToSection('live')">View Live Map</button>
+            <button class="btn btn-secondary" onclick="scrollToSection('features')">Learn More</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Explore History Like Never Before</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Insights</h3>
+                <p>Get detailed historical information, architectural analysis, and fascinating stories powered by advanced AI technology</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Live Location & Directions</h3>
+                <p>Find real-time directions, visiting hours, and local tips for every fort with integrated GPS navigation</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>Interactive Map</h3>
+                <p>Explore all forts on a live interactive map with your current location and real-time navigation</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Rich History Database</h3>
+                <p>Learn about battles, dynasties, rulers, and the cultural significance of each historic monument</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Build Timeline & Costs</h3>
+                <p>Discover when each fort was built, construction periods, estimated historical costs, and architectural evolution</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Real-Time Reviews</h3>
+                <p>Read authentic visitor experiences, ratings, and travel tips from people who have explored these monuments</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Map Section -->
+    <section class="live-map-section" id="live">
+        <h2>🌍 Explore Forts on Live Map</h2>
+        <p class="section-subtitle">Interactive map showing all forts with your current location</p>
+        
+        <div class="map-controls">
+            <button class="control-btn" onclick="getCurrentLocation()">
+                📍 Show My Location
+            </button>
+            <button class="control-btn" onclick="showAllForts()">
+                🏰 Show All Forts
+            </button>
+            <select class="state-filter" id="stateFilter" onchange="filterByState()">
+                <option value="all">All States</option>
+                <option value="rajasthan">Rajasthan</option>
+                <option value="maharashtra">Maharashtra</option>
+                <option value="madhya pradesh">Madhya Pradesh</option>
+                <option value="uttar pradesh">Uttar Pradesh</option>
+                <option value="gujarat">Gujarat</option>
+                <option value="karnataka">Karnataka</option>
+                <option value="telangana">Telangana</option>
+                <option value="tamil nadu">Tamil Nadu</option>
+                <option value="kerala">Kerala</option>
+                <option value="goa">Goa</option>
+                <option value="punjab">Punjab</option>
+                <option value="delhi">Delhi</option>
+            </select>
+        </div>
+
+        <div class="live-map-container" id="liveMap">
+            <iframe 
+                id="mapFrame"
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border:0" 
+                src="https://maps.google.com/maps?q=28.6562,77.2410&z=5&output=embed"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="nearby-forts" id="nearbyForts">
+            <h3>📍 Forts Near You</h3>
+            <div id="nearbyList">Click "Show My Location" to find nearby forts</div>
+        </div>
+    </section>
+
+    <!-- Fort Information Section -->
+    <section class="info-page" id="info">
+        <h2>Complete Fort Information Database</h2>
+        <p class="info-subtitle">Explore comprehensive details, architecture, and historical significance of India's magnificent forts</p>
+        
+        <div class="info-grid" id="infoGrid"></div>
+    </section>
+
+    <!-- Forts Showcase Section -->
+    <section class="forts-showcase" id="forts">
+        <h2>Journey Through India's Legendary Fortresses</h2>
+        <div class="forts-grid" id="fortsGrid"></div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <h2>What Travelers Are Saying</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">Rajesh Kumar</span>
+                    <span class="rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p>"Amazing app! The AI-powered details about Red Fort were incredibly accurate. The live directions feature saved me so much time. Highly recommended for history enthusiasts!"</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">Priya Sharma</span>
+                    <span class="rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p>"Visited Amber Fort using HISTOPEDIA's guidance. The historical information and construction timeline details were fascinating. Best travel companion for heritage sites!"</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">David Thompson</span>
+                    <span class="rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p>"As a tourist, this app was a lifesaver! The real-time map and visitor information helped me plan my entire Rajasthan fort tour. Virtual tours are stunning!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detail View Modal -->
+    <div class="detail-view" id="detailView">
+        <button class="close-btn" onclick="closeDetail()">✕</button>
+        <div class="detail-container" id="detailContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 HISTOPEDIA - Powered by AI | Preserving India's Heritage</p>
+    </footer>
+
+    <!-- Load JavaScript -->
+    <script src="fortData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
